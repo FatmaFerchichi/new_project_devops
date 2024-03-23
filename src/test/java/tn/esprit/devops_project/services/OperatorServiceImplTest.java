@@ -57,6 +57,6 @@ class OperatorServiceImplTest {
         assertEquals("Ferchichi", retrievedOperator.getFname()); // Compare with the expected value
 
         // Verify that findById method was called exactly once with the correct argument
-        verify(operatorRepository, times(1)).findById(1L);
+        Mockito.verify(operatorRepository, Mockito.times(1)).findById(1L);
     }
 }
