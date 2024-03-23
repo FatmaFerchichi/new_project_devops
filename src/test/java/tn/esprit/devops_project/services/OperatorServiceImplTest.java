@@ -13,10 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -31,11 +28,6 @@ class OperatorServiceImplTest {
 
     @InjectMocks
     private OperatorServiceImpl operatorService;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void retrieveAllOperators() {
