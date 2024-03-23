@@ -9,6 +9,7 @@ import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.repositories.OperatorRepository;
 import tn.esprit.devops_project.services.Iservices.IOperatorService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -18,27 +19,32 @@ public class OperatorServiceImpl implements IOperatorService {
 
 	OperatorRepository operatorRepository;
 	@Override
+	@Transactional
 	public List<Operator> retrieveAllOperators() {
 		return (List<Operator>) operatorRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public Operator addOperator(Operator operator) {
 		return operatorRepository.save(operator);
 	}
 
 	@Override
+	@Transactional
 	public void deleteOperator(Long id) {
 		operatorRepository.deleteById(id);
 		
 	}
 
 	@Override
+	@Transactional
 	public Operator updateOperator(Operator operator) {
 		return operatorRepository.save(operator);
 	}
 
 	@Override
+	@Transactional
 	public Operator retrieveOperator(Long id) {
 		return operatorRepository.findById(id).orElseThrow(() -> new NullPointerException("Operator not found"));
 	}
