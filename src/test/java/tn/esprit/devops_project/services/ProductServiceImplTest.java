@@ -5,8 +5,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
-import tn.esprit.devops_project.entities.ProductCategory;
-import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
 
@@ -28,15 +26,17 @@ class ProductServiceImplTest {
     @Test
     void addProduct() {
         // Mock data
-        Stock stock = new Stock(1L,"BERSHKA",null);
-        Stock savedStock = stockRepository.save(stock);
-        // Mock repository method
-     //   when(stockRepository.save(stock)).thenReturn(stock);
+        Product product = new Product();
+        // You need to set properties of the product here as needed for the test
+
+        // Mock repository method behavior
+        when(productRepository.save(product)).thenReturn(product);
 
         // Perform the action
-
+        Long stockId = 1L; // Example stock ID
+        Product savedProduct = productService.addProduct(product, stockId);
 
         // Assertions
-        assertNotNull(savedStock);
+        assertNotNull(savedProduct);
     }
 }
