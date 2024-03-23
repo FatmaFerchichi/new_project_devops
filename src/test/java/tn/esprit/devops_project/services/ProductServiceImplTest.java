@@ -5,8 +5,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
+import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
+
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -29,11 +32,17 @@ class ProductServiceImplTest {
         Product product = new Product();
         // You need to set properties of the product here as needed for the test
 
-        // Mock repository method behavior
+        // Mock stock
+        Stock stock = new Stock(); // Create a mock Stock object
+        Long stockId = 1L; // Example stock ID
+
+        // Mock repository method behavior for stockRepository
+        when(stockRepository.findById(stockId)).thenReturn(Optional.of(stock));
+
+        // Mock repository method behavior for productRepository
         when(productRepository.save(product)).thenReturn(product);
 
         // Perform the action
-        Long stockId = 1L; // Example stock ID
         Product savedProduct = productService.addProduct(product, stockId);
 
         // Assertions
