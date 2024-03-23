@@ -44,25 +44,19 @@ class OperatorServiceImplTest {
         operator1.setIdOperateur(1L);
         operator1.setFname("Ferchichi");
         operator1.setLname("Fatma");
-        Operator operator2 = new Operator();
-        operator2.setFname("Ferchichi");
-        operator2.setLname("Feten");
-        Operator operator = new Operator();
-        operator.setFname("Terzi");
-        operator.setLname("Manel");
-        operator.setPassword("password");
 
-        Mockito.when(operatorRepository.findById(1L)).thenReturn(Optional.of(operator));
+        // Mock repository behavior
+        when(operatorRepository.findById(1L)).thenReturn(Optional.of(operator1));
 
         // Act
         Operator retrievedOperator = operatorService.retrieveOperator(1L);
 
         // Assert
         assertNotNull(retrievedOperator);
-        assertEquals(1L, retrievedOperator.getIdOperateur()); // Improved assertion for better readability
-        assertEquals("test", retrievedOperator.getFname());
+        assertEquals(1L, retrievedOperator.getIdOperateur());
+        assertEquals("Ferchichi", retrievedOperator.getFname()); // Compare with the expected value
 
-        Mockito.verify(operatorRepository, Mockito.times(1)).findById(1L);
-
+        // Verify that findById method was called exactly once with the correct argument
+        verify(operatorRepository, times(1)).findById(1L);
     }
 }
