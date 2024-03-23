@@ -3,7 +3,6 @@ package tn.esprit.devops_project.services;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.ProductCategory;
@@ -11,14 +10,10 @@ import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-
 class ProductServiceImplTest {
 
     @Mock
@@ -32,8 +27,16 @@ class ProductServiceImplTest {
 
     @Test
     void addProduct() {
-        Stock stock = new Stock(1L, "STRASS", null);
+        // Mock data
+        Stock stock = new Stock(1L,"BERSHKA",null);
         Stock savedStock = stockRepository.save(stock);
+        // Mock repository method
+     //   when(stockRepository.save(stock)).thenReturn(stock);
+
+        // Perform the action
+
+
+        // Assertions
         assertNotNull(savedStock);
     }
 }
