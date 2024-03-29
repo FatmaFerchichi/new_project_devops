@@ -16,6 +16,22 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>main</id>
+            <!--
+                        <activation><activeByDefault>true</activeByDefault></activation>
+            -->
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>src/test/resources/application.properties</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
