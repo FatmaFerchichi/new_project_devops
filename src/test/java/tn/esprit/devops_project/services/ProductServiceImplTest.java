@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class ProductServiceImplTest {
 
     @Mock
