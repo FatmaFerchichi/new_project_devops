@@ -57,7 +57,7 @@ class OperatorServiceImplTest {
         operatorToDelete.setIdOperateur(idToDelete);
 
         // Mock repository behavior
-        when(operatorRepository.findById(idToDelete)).thenReturn(Optional.of(operatorToDelete));
+        lenient().when(operatorRepository.findById(idToDelete)).thenReturn(Optional.of(operatorToDelete));
 
         // Call the method to be tested
         operatorService.deleteOperator(idToDelete);
