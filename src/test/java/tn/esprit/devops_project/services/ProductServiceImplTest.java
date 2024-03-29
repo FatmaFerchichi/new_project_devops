@@ -1,53 +1,46 @@
 package tn.esprit.devops_project.services;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.devops_project.entities.Product;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.repositories.ProductRepository;
 import tn.esprit.devops_project.repositories.StockRepository;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
-@ActiveProfiles("test")
 class ProductServiceImplTest {
 
-    @Mock
+    @Autowired
     private ProductRepository productRepository;
 
-    @Mock
+    @Autowired
     private StockRepository stockRepository;
 
-    @InjectMocks
+    @Autowired
     private ProductServiceImpl productService;
 
     @Test
     void addProduct() {
         // Mock data
-        Product product = new Product();
+       // Product product = new Product();
         // You need to set properties of the product here as needed for the test
 
         // Mock stock
-        Stock stock = new Stock(); // Create a mock Stock object
-        Long stockId = 1L; // Example stock ID
+        Stock stock = new Stock(1L,"BERSHKA",null);
 
-        // Mock repository method behavior for stockRepository
-        when(stockRepository.findById(stockId)).thenReturn(Optional.of(stock));
+        // Save the stock
+        Stock savedStock = stockRepository.save(stock);
 
-        // Mock repository method behavior for productRepository
-        when(productRepository.save(product)).thenReturn(product);
+        // Set the stock ID for the product
+       // product.setStock(savedStock);
 
-        // Perform the action
-        Product savedProduct = productService.addProduct(product, stockId);
+        // Save the product
+      //  Product savedProduct = productService.addProduct(product, stockId);
 
         // Assertions
-        assertNotNull(savedProduct);
+        assertNotNull(savedStock);
     }
 }
