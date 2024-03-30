@@ -29,7 +29,7 @@ class ProductServiceImplTest {
         // You need to set properties of the product here as needed for the test
 
         // Mock stock
-        Stock stock = new Stock(2L,"ZEN",null);
+        Stock stock = new Stock(1L,"BERSHKA",null);
 
         // Save the stock
         Stock savedStock = stockRepository.save(stock);
