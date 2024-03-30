@@ -9,8 +9,7 @@ import tn.esprit.devops_project.repositories.OperatorRepository;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -40,5 +39,23 @@ class OperatorServiceImplTest {
         assertNotNull(retrievedOperator);
         assertEquals(1L, retrievedOperator.getIdOperateur());
         assertEquals("Ferchichi", retrievedOperator.getFname()); // Compare with the expected value
+
+
     }
+
+    @Test
+    void testDeleteOperator() {
+        // Mock data
+        Long idToDelete = 1L;
+        Operator operatorToDelete = new Operator();
+        operatorToDelete.setIdOperateur(idToDelete);
+        operatorRepository.save(operatorToDelete);
+
+        // Call the method to be tested
+        operatorService.deleteOperator(idToDelete);
+
+        // Assert that the operator is deleted
+        assertFalse(operatorRepository.existsById(idToDelete));
+    }
+
 }
