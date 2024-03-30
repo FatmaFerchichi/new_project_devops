@@ -3,6 +3,7 @@ package tn.esprit.devops_project.services;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import tn.esprit.devops_project.entities.Operator;
 import tn.esprit.devops_project.repositories.OperatorRepository;
@@ -11,16 +12,17 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @ActiveProfiles("test")
 class OperatorServiceImplTest {
 
     @Autowired
-    private OperatorRepository operatorRepository;
-
-    @Autowired
     private OperatorServiceImpl operatorService;
+
+    @MockBean
+    private OperatorRepository operatorRepository;
 
     @Test
     void retrieveAllOperators() {
@@ -30,8 +32,8 @@ class OperatorServiceImplTest {
         operator1.setFname("Ferchichi");
         operator1.setLname("Fatma");
 
-        // Save the mock data to the repository
-        operatorRepository.save(operator1);
+        // Mock repository behavior
+        when(operatorRepository.findById(1L)).thenReturn(Optional.of(operator1));
 
         // Act
         Operator retrievedOperator = operatorService.retrieveOperator(1L);
