@@ -46,7 +46,7 @@ class OperatorServiceImplTest {
     @Test
     void testDeleteOperator() {
         // Mock data
-        Long idToDelete = 1L;
+        Long idToDelete = 2L;
         Operator operatorToDelete = new Operator();
         operatorToDelete.setIdOperateur(idToDelete);
         operatorRepository.save(operatorToDelete);
